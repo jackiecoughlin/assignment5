@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+
+ #sq {
+  width: 400px;
+  height: 200px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.square{
+      height: 100px;
+      width: 100px;
+      border-style: solid;
+      margin: 5px;
+      text-align: center;
+      font-size: 80px;
+}
+#turnIndicator{
+      border: 1px solid black; 
+}
+
+#winCondition{
+      border: 1px solid black; 
+}
+
+div.square:hover{
+    background-color: rgb(74, 216, 238);
+}
+</style>
+</head>
+
+
+<h1 style = "font-size: 60px; text-align: center;">Tic Tac Toe Game</h1>
+
+<div id = "turnIndicator">Turn: </div>
+<div id = "winCondition">Winner: </div>
+
+<div id = "sq">
+  <script>
+    const NUM_SQUARES = 9; 
+    for (i=0; i<NUM_SQUARES; i++){
+        id = "sq"+i; 
+        document.write("<div class='square' id =' " + id + " '></div>");
+    }
+    document.getElementById( ' sq0 ').innerHTML = "X"; 
+    document.getElementById( ' sq3 ').innerHTML = "X"; 
+    document.getElementById( ' sq4 ').innerHTML = "O"; 
+    </script>
+</div>
+
+
+
+</html>
