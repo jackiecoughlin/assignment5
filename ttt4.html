@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+
+ #container {
+  width: 400px;
+  height: 200px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.square{
+      height: 100px;
+      width: 100px;
+      border-style: solid;
+      margin: 5px;
+      text-align: center;
+      font-size: 80px;
+}
+
+#turnIndicator{
+      border: 1px solid black; 
+}
+
+#winCondition{
+      border: 1px solid black; 
+}
+
+div.square:hover{
+    background-color: rgb(74, 216, 238);
+}
+</style>
+</head>
+
+<h1 style = "font-size: 60px; text-align: center;">Tic Tac Toe Game</h1>
+
+<div id = "turnIndicator">Turn: </div>
+<div id = "winCondition">Winner: </div>
+
+<body>
+  <input type = 'button' value = "Start Game" id = "btn1">
+</body>
+
+<script>
+isWin=false; 
+isStalemate= false;
+document.getElementById("btn1").onclick = clearBoard; 
+  function clearBoard(){
+      for (i = 0; i < 9; i++){
+        document.getElementById(" sq" + i + " ").innerHTML = ""; 
+      } 
+      isWin=false; 
+      isStalemate= false;
+
+  }
+</script>
+
+<script>
+  let firstPlayer = Math.random();
+    player =""; 
+    if (firstPlayer < 0.5){
+        player = "X"; 
+    } else {
+        player = "O"; 
+    }
+    //set first player
+    document.getElementById("turnIndicator").innerHTML="Turn: Player " + player; 
+</script>
+
+<div id = "container">
+  <script>
+    let moves = ["-", "-", "-", "-", "-", "-", "-", "-", "-"];
+
+    const NUM_SQUARES = 9;
+    for (i=0; i<NUM_SQUARES; i++){
+        id = "sq"+i;  
+        document.write("<div class='square' id =' " + id + " '></div>");
+    } 
+
+    
+      window.onload=function(){
+      for (i = 0; i<NUM_SQUARES; i++){ 
+        if(document.getElementById(" sq" + i + " ").onclick = buttonClick){
+              document.getElementById(" sq" + i + " ").value = i;  
+          }
+      }
+      function updateArray(){
+        moves[val] = player; 
+      }
+
+      function buttonClick(e)
+        { 
+          if (!isStalemate && !isWin){
+          val= e.target.value;
+          alert("Box "+ val) 
+          if (document.getElementById(" sq"+ val + " ").innerHTML == ""){
+              document.getElementById(" sq"+ val + " ").innerHTML = player;
+              updateArray(); 
+              winner = winCons();
+              if (winner == 1){
+                  isWin = true; 
+                  document.getElementById("winCondition").innerHTML = "Winner: " + player; 
+                  // document.write("Player: " + player + " won!"); 
+              }
+              if (winner == 2){ 
+                  isStalemate = true; 
+                  document.getElementById("winCondition").innerHTML = "Stalemate!"; 
+                  // document.write("Stalemate!"); 
+              }
+              if (player == "X"){
+                player = "O"; 
+              } else {
+                player = "X"; 
+              } 
+          }
+          document.getElementById("turnIndicator").innerHTML="Turn: Player " + player;
+        }  
+      }
+        
+        function winCons(){
+           winConditions = [
+                    // horizontal wins
+                    moves[0] + moves[1] + moves[2],
+                    moves[3] + moves[4] + moves[5],
+                    moves[6] + moves[7] + moves[8],
+                    // vertical wins
+                    moves[0] + moves[3] + moves[6],
+                    moves[1] + moves[4] + moves[7],
+                    moves[2] + moves[5] + moves[8],
+                    // diagonal wins
+                    moves[0] + moves[4] + moves[8],
+                    moves[2] + moves[4] + moves[6],
+                ];
+
+                // check for a win
+                for (let condition of winConditions) {
+                    if (condition === "XXX" || condition === "OOO") {
+                        return 1; 
+                    }
+                }  
+
+          //Stalemate 
+          if (moves[0] != "-" && moves[1] != "-" && moves[2] != "-" 
+              && moves[3] != "-" && moves[4] != "-" && moves[5] != "-"
+              && moves[6] != "-" && moves[7] != "-" && moves[8] != "-"){
+          //produce a message that they created a stalemate 
+                return 2; 
+          }
+          else{
+            return 0; 
+          }
+      }
+    }
+    </script>
+</div>
+
+</html>
