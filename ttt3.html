@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+
+ #container {
+  width: 400px;
+  height: 200px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.square{
+      height: 100px;
+      width: 100px;
+      border-style: solid;
+      margin: 5px;
+      text-align: center;
+      font-size: 80px;
+}
+
+#turnIndicator{
+      border: 1px solid black; 
+}
+
+#winCondition{
+      border: 1px solid black; 
+}
+
+div.square:hover{
+    background-color: rgb(74, 216, 238);
+}
+</style>
+</head>
+
+<h1 style = "font-size: 60px; text-align: center;">Tic Tac Toe Game</h1>
+
+<div id = "turnIndicator">Turn: </div>
+<div id = "winCondition">Winner: </div>
+
+<body>
+  <input type = 'button' value = "Start Game" id = "btn1">
+</body>
+
+<script>
+document.getElementById("btn1").onclick = clearBoard; 
+  function clearBoard(){
+      for (i = 0; i < 9; i++){
+        document.getElementById(" sq" + i + " ").innerHTML = ""; 
+      } 
+  }
+
+</script>
+
+<script>
+  let firstPlayer = Math.random();
+    player =""
+    if (firstPlayer < 0.5){
+        player = "X"; 
+    } else {
+        player = "O"; 
+    }
+    //set first player
+    document.getElementById("turnIndicator").innerHTML="Turn: Player " + player; 
+</script>
+
+<div id = "container">
+  <script>
+    // updateTurnIndicator(); 
+    const NUM_SQUARES = 9;
+    for (i=0; i<NUM_SQUARES; i++){
+        id = "sq"+i;  
+        document.write("<div class='square' id =' " + id + " '></div>");
+    }
+
+      window.onload=function(){
+      for (i = 0; i<NUM_SQUARES; i++){ 
+        if(document.getElementById(" sq" + i + " ").onclick = buttonClick){
+              document.getElementById(" sq" + i + " ").value = i;  
+          }
+      }
+
+      }
+      function buttonClick(e)
+        { 
+          val= e.target.value;
+          alert("Box "+ val) 
+          if (document.getElementById(" sq"+ val + " ").innerHTML == ""){
+              document.getElementById(" sq"+ val + " ").innerHTML = player;
+              if (player == "X"){
+                player = "O"; 
+              } else {
+                player = "X"; 
+              } 
+          }
+          document.getElementById("turnIndicator").innerHTML="Turn: Player " + player;
+        }    
+    </script>
+</div>
+
+</html>
+
